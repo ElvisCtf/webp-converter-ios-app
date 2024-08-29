@@ -14,4 +14,8 @@ extension UINavigationController {
         self.navigationBar.standardAppearance = navigationBarAppearance
         self.navigationBar.scrollEdgeAppearance = navigationBarAppearance
     }
+    
+    func enableNavBarLargeTitle() {
+        self.navigationBar.prefersLargeTitles = true
+    }
 }
