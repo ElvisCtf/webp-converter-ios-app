@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FCAFD6982C805C540040B618 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAFD6972C805C540040B618 /* TaskTableViewCell.swift */; };
 		FCFBD87B2C7DD597004DCA9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFBD87A2C7DD597004DCA9F /* AppDelegate.swift */; };
 		FCFBD87D2C7DD597004DCA9F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFBD87C2C7DD597004DCA9F /* SceneDelegate.swift */; };
 		FCFBD87F2C7DD597004DCA9F /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFBD87E2C7DD597004DCA9F /* ConverterViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FCAFD6972C805C540040B618 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		FCFBD8772C7DD597004DCA9F /* ImageConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCFBD87A2C7DD597004DCA9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCFBD87C2C7DD597004DCA9F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FCAFD6962C805BF40040B618 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				FCAFD6972C805C540040B618 /* TaskTableViewCell.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		FCFBD86E2C7DD597004DCA9F = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				FCFBD87E2C7DD597004DCA9F /* ConverterViewController.swift */,
+				FCAFD6962C805BF40040B618 /* Subviews */,
 			);
 			path = Converter;
 			sourceTree = "<group>";
@@ -310,6 +321,7 @@
 			files = (
 				FCFBD87F2C7DD597004DCA9F /* ConverterViewController.swift in Sources */,
 				FCFBD87B2C7DD597004DCA9F /* AppDelegate.swift in Sources */,
+				FCAFD6982C805C540040B618 /* TaskTableViewCell.swift in Sources */,
 				FCFBD8AB2C7DD7F9004DCA9F /* UINavigationController+Ext.swift in Sources */,
 				FCFBD87D2C7DD597004DCA9F /* SceneDelegate.swift in Sources */,
 			);
