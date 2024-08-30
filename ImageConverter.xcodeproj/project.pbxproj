@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC5E6A092C81609100C5A599 /* ConverterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E6A082C81609100C5A599 /* ConverterViewModel.swift */; };
+		FC5E6A0B2C816B3100C5A599 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E6A0A2C816B3100C5A599 /* UIViewController+Ext.swift */; };
 		FCAFD6982C805C540040B618 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAFD6972C805C540040B618 /* TaskTableViewCell.swift */; };
+		FCAFD69B2C807C3E0040B618 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAFD69A2C807C3E0040B618 /* ImageModel.swift */; };
 		FCFBD87B2C7DD597004DCA9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFBD87A2C7DD597004DCA9F /* AppDelegate.swift */; };
 		FCFBD87D2C7DD597004DCA9F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFBD87C2C7DD597004DCA9F /* SceneDelegate.swift */; };
 		FCFBD87F2C7DD597004DCA9F /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFBD87E2C7DD597004DCA9F /* ConverterViewController.swift */; };
@@ -39,7 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC5E6A082C81609100C5A599 /* ConverterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewModel.swift; sourceTree = "<group>"; };
+		FC5E6A0A2C816B3100C5A599 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		FCAFD6972C805C540040B618 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		FCAFD69A2C807C3E0040B618 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		FCFBD8772C7DD597004DCA9F /* ImageConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCFBD87A2C7DD597004DCA9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCFBD87C2C7DD597004DCA9F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,12 +88,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FCAFD6962C805BF40040B618 /* Subviews */ = {
+		FC5E6A072C81607700C5A599 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FC5E6A082C81609100C5A599 /* ConverterViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FCAFD6962C805BF40040B618 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				FCAFD6972C805C540040B618 /* TaskTableViewCell.swift */,
 			);
-			path = Subviews;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FCAFD6992C807C1D0040B618 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FCAFD69A2C807C3E0040B618 /* ImageModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		FCFBD86E2C7DD597004DCA9F = {
@@ -160,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				FCFBD8AA2C7DD7F9004DCA9F /* UINavigationController+Ext.swift */,
+				FC5E6A0A2C816B3100C5A599 /* UIViewController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -177,7 +200,9 @@
 			isa = PBXGroup;
 			children = (
 				FCFBD87E2C7DD597004DCA9F /* ConverterViewController.swift */,
-				FCAFD6962C805BF40040B618 /* Subviews */,
+				FCAFD6992C807C1D0040B618 /* Models */,
+				FCAFD6962C805BF40040B618 /* Views */,
+				FC5E6A072C81607700C5A599 /* ViewModels */,
 			);
 			path = Converter;
 			sourceTree = "<group>";
@@ -319,10 +344,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCAFD69B2C807C3E0040B618 /* ImageModel.swift in Sources */,
 				FCFBD87F2C7DD597004DCA9F /* ConverterViewController.swift in Sources */,
 				FCFBD87B2C7DD597004DCA9F /* AppDelegate.swift in Sources */,
 				FCAFD6982C805C540040B618 /* TaskTableViewCell.swift in Sources */,
+				FC5E6A092C81609100C5A599 /* ConverterViewModel.swift in Sources */,
 				FCFBD8AB2C7DD7F9004DCA9F /* UINavigationController+Ext.swift in Sources */,
+				FC5E6A0B2C816B3100C5A599 /* UIViewController+Ext.swift in Sources */,
 				FCFBD87D2C7DD597004DCA9F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
