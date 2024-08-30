@@ -13,12 +13,13 @@ class ConverterViewController: UIViewController {
     var tasks = Array(0...10)
     
     lazy var tableView: UITableView = {
-        let tv = UITableView.init(frame: .zero, style: .grouped)
+        let tv = UITableView.init(frame: .zero, style: .plain)
         tv.delegate = self
         tv.dataSource = self
         tv.separatorStyle = .none
         tv.register(TaskTableViewCell.self, forCellReuseIdentifier: TaskTableViewCell.resusableIdentifier)
         tv.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
+        tv.backgroundColor = .systemGroupedBackground
         return tv
     }()
 
@@ -78,6 +79,19 @@ extension ConverterViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.resusableIdentifier, for: indexPath) as! TaskTableViewCell
         cell.setString(filename: "\(tasks[indexPath.row])")
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.endUpdates()
+        }
     }
 }
 
