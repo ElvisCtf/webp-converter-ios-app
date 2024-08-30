@@ -9,10 +9,4 @@ import Foundation
 
 class ConverterViewModel {
     var tasks = [ImageModel]()
-    
-    init() {
-        for i in 0...10 {
-            tasks.append(ImageModel(filename: "\(i).webp", outputFormat: .PNG))
-        }
-    }
 }

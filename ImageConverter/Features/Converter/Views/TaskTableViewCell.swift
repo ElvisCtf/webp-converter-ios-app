@@ -10,6 +10,8 @@ import SnapKit
 
 class TaskTableViewCell: UITableViewCell {
     static let resusableIdentifier = "TaskTableViewCell"
+    var row = 0
+    var changeFormatCallBack: ((Int, ImageFormat) -> ())?
     
     let containerView: UIView = {
         let view = UIView()
@@ -39,12 +41,16 @@ class TaskTableViewCell: UITableViewCell {
         return lbl
     }()
     
-    let formatBtn: UIButton = {
+    lazy var formatBtn: UIButton = {
         let btn = UIButton(primaryAction: nil)
         btn.configuration = .tinted()
         btn.changesSelectionAsPrimaryAction = true
         btn.showsMenuAsPrimaryAction = true
-        let actionClosure = { (action: UIAction) in }
+        let actionClosure = { (action: UIAction) in
+            if let changeFormat = self.changeFormatCallBack {
+                changeFormat(self.row, ImageFormat(rawValue: action.title) ?? .PNG)
+            }
+        }
         btn.menu = UIMenu(
             options: .displayInline,
             children: [

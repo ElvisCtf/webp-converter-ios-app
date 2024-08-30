@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import PhotosUI
 
 class ConverterViewController: UIViewController {
     
@@ -22,7 +23,7 @@ class ConverterViewController: UIViewController {
         tv.backgroundColor = .systemGroupedBackground
         return tv
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
@@ -50,11 +51,31 @@ class ConverterViewController: UIViewController {
     }
     
     @objc func addImage() {
-        print("A")
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 0
+        config.selection = .ordered
+        config.filter = .images
+        let imagePicker = PHPickerViewController(configuration: config)
+        imagePicker.delegate = self
+        present(imagePicker, animated: true)
     }
     
     @objc func convertImage() {
-        print("B")
+        for image in viewModel.tasks {
+            guard let inputData = image.inputData,
+                  let inputImage = UIImage(data: inputData)
+            else { continue }
+            
+            let outputData = switch image.outputFormat {
+            case .PNG:
+                inputImage.pngData()
+            case .JPG:
+                inputImage.jpegData(compressionQuality: 1.0)
+            }
+            if let outputData, let outputImage = UIImage(data: outputData) {
+                UIImageWriteToSavedPhotosAlbum(outputImage, nil, nil, nil)
+            }
+        }
     }
 }
 
@@ -71,7 +92,11 @@ extension ConverterViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.resusableIdentifier, for: indexPath) as! TaskTableViewCell
+        cell.row = indexPath.row
         cell.setString(filename: viewModel.tasks[indexPath.row].filename)
+        cell.changeFormatCallBack = { row, imageFormat in
+            self.viewModel.tasks[indexPath.row].outputFormat = imageFormat
+        }
         return cell
     }
     
@@ -89,3 +114,26 @@ extension ConverterViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+
+// MARK: TableView Delegate
+extension ConverterViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        var images = [ImageModel]()
+        
+        for result in results {
+            let itemProvider = result.itemProvider
+            // Check image is WebP
+            if itemProvider.hasItemConformingToTypeIdentifier(UTType.webP.identifier) {
+                // Convert WebP image into data object
+                itemProvider.loadDataRepresentation(forTypeIdentifier: UTType.webP.identifier) { data, error in
+                    guard error == nil else { return }
+                    DispatchQueue.main.async {
+                        self.viewModel.tasks.append(ImageModel(filename: itemProvider.suggestedName ?? "", inputData: data, outputFormat: .PNG))
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+    }
+}
