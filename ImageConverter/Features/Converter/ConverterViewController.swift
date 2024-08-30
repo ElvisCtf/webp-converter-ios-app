@@ -10,7 +10,7 @@ import SnapKit
 
 class ConverterViewController: UIViewController {
     
-    var tasks = Array(0...10)
+    let viewModel = ConverterViewModel()
     
     lazy var tableView: UITableView = {
         let tv = UITableView.init(frame: .zero, style: .plain)
@@ -30,7 +30,7 @@ class ConverterViewController: UIViewController {
     
     func initUI() {
         view.backgroundColor = .systemBackground
-        initNavBar()
+        initNavBar(with: "Image Converter")
         initToolBar()
         
         view.addSubview(tableView)
@@ -40,19 +40,12 @@ class ConverterViewController: UIViewController {
         }
     }
     
-    func initNavBar() {
-        navigationController?.setNavBarTranslucent()
-        navigationController?.enableNavBarLargeTitle()
-        navigationItem.title = "Image Converter"
-    }
-    
     func initToolBar() {
         toolbarItems = [
             UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addImage)),
             UIBarButtonItem(systemItem: .flexibleSpace),
             UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(convertImage))
         ]
-        navigationController?.toolbar.isTranslucent = true
         navigationController?.setToolbarHidden(false, animated: false)
     }
     
@@ -65,6 +58,7 @@ class ConverterViewController: UIViewController {
     }
 }
 
+
 // MARK: TableView Delegate
 extension ConverterViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -72,12 +66,12 @@ extension ConverterViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        return viewModel.tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.resusableIdentifier, for: indexPath) as! TaskTableViewCell
-        cell.setString(filename: "\(tasks[indexPath.row])")
+        cell.setString(filename: viewModel.tasks[indexPath.row].filename)
         return cell
     }
     
@@ -88,7 +82,7 @@ extension ConverterViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            tasks.remove(at: indexPath.row)
+            viewModel.tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.endUpdates()
         }

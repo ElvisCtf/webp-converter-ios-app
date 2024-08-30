@@ -11,47 +11,45 @@ import SnapKit
 class TaskTableViewCell: UITableViewCell {
     static let resusableIdentifier = "TaskTableViewCell"
     
-    lazy var containerView: UIView = {
+    let containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .secondarySystemGroupedBackground
         view.layer.cornerRadius = 8
         return view
     }()
     
-    lazy var leadingIV: UIImageView = {
+    let leadingIV: UIImageView = {
         let image = UIImage(systemName: "doc")
         let iv =  UIImageView(image: image)
         iv.contentMode = .scaleAspectFit
         return iv
     }()
     
-    lazy var fileLbl: UILabel = {
+    let fileLbl: UILabel = {
         let lbl = UILabel()
         lbl.numberOfLines = 1
         lbl.text = ""
         return lbl
     }()
     
-    lazy var toLbl: UILabel = {
+    let toLbl: UILabel = {
         let lbl = UILabel()
         lbl.numberOfLines = 1
         lbl.text = "To"
         return lbl
     }()
     
-    lazy var formatBtn: UIButton = {
+    let formatBtn: UIButton = {
         let btn = UIButton(primaryAction: nil)
         btn.configuration = .tinted()
         btn.changesSelectionAsPrimaryAction = true
         btn.showsMenuAsPrimaryAction = true
-        let actionClosure = { (action: UIAction) in
-            btn.setTitle(action.title, for: .normal)
-        }
+        let actionClosure = { (action: UIAction) in }
         btn.menu = UIMenu(
             options: .displayInline,
             children: [
-                UIAction(title: "PNG", handler: actionClosure),
-                UIAction(title: "JPG", handler: actionClosure)
+                UIAction(title: ImageFormat.PNG.rawValue, handler: actionClosure),
+                UIAction(title: ImageFormat.JPG.rawValue, handler: actionClosure)
             ]
         )
         return btn
