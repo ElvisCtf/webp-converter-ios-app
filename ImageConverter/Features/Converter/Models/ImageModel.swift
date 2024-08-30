@@ -15,13 +15,11 @@ enum ImageFormat: String {
 class ImageModel {
     var filename: String
     var inputData: Data?
-    var outputData: Data?
     var outputFormat: ImageFormat
     
-    init(filename: String, inputData: Data? = nil, outputData: Data? = nil, outputFormat: ImageFormat) {
+    init(filename: String, inputData: Data? = nil, outputFormat: ImageFormat) {
         self.filename = filename
         self.inputData = inputData
-        self.outputData = outputData
         self.outputFormat = outputFormat
     }
 }
