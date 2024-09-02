@@ -1,5 +1,5 @@
 //
-//  TaskTableViewCell.swift
+//  ImageTaskCellView.swift
 //  ImageConverter
 //
 //  Created by Elvis Cheng (ESD - Software Trainee, Digital Solutions) on 29/8/2024.
@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-class TaskTableViewCell: UITableViewCell {
-    static let resusableIdentifier = "TaskTableViewCell"
+class ImageTaskCellView: UITableViewCell {
+    static let resusableIdentifier = "ImageTaskCellView"
     var row = 0
     var changeFormatCallBack: ((Int, ImageFormat) -> ())?
     
