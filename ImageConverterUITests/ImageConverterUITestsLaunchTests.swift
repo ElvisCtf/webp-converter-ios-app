@@ -2,7 +2,7 @@
 //  ImageConverterUITestsLaunchTests.swift
 //  ImageConverterUITests
 //
-//  Created by Elvis Cheng (ESD - Software Trainee, Digital Solutions) on 27/8/2024.
+//  Created by Elvis Cheng on 27/8/2024.
 //
 
 import XCTest

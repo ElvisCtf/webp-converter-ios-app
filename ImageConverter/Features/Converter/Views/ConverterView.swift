@@ -2,7 +2,7 @@
 //  ConverterView.swift
 //  ImageConverter
 //
-//  Created by Elvis Cheng (ESD - Software Trainee, Digital Solutions) on 2/9/2024.
+//  Created by Elvis Cheng on 2/9/2024.
 //
 
 import UIKit
