@@ -55,6 +55,7 @@ class ConverterViewController: UIViewController {
 extension ConverterViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
+        var index = 0
         for result in results {
             let itemProvider = result.itemProvider
             // Check image is WebP
@@ -63,8 +64,9 @@ extension ConverterViewController: PHPickerViewControllerDelegate {
                 itemProvider.loadDataRepresentation(forTypeIdentifier: UTType.webP.identifier) { data, error in
                     guard error == nil else { return }
                     DispatchQueue.main.async {
-                        self.viewModel.images.append(ImageModel(filename: itemProvider.suggestedName ?? "", inputData: data, outputFormat: .PNG))
+                        self.viewModel.imageTasks.append(ImageTaskModel(index: index, filename: itemProvider.suggestedName ?? "", inputData: data, outputFormat: .PNG))
                         self.converterView.reloadTable()
+                        index+=1
                     }
                 }
             }

@@ -58,15 +58,15 @@ extension ConverterView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.images.count
+        return viewModel.imageTasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImageTaskCellView.resusableIdentifier, for: indexPath) as! ImageTaskCellView
         cell.row = indexPath.row
-        cell.setString(filename: viewModel.images[indexPath.row].filename)
+        cell.setData(viewModel.imageTasks[indexPath.row])
         cell.changeFormatCallBack = { row, imageFormat in
-            self.viewModel.images[indexPath.row].outputFormat = imageFormat
+            self.viewModel.imageTasks[indexPath.row].outputFormat = imageFormat
         }
         return cell
     }
@@ -78,7 +78,7 @@ extension ConverterView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            viewModel.images.remove(at: indexPath.row)
+            viewModel.imageTasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.endUpdates()
         }

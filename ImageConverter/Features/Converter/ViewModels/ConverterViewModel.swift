@@ -7,23 +7,24 @@
 
 import UIKit
 
-class ConverterViewModel {
-    var images = [ImageModel]()
+class ConverterViewModel: NSObject {
+    var imageTasks = [ImageTaskModel]()
     
-    func convertImages() {
-        for image in images {
-            guard let inputData = image.inputData, let inputImage = UIImage(data: inputData) else { continue }
-            
-            let outputData = switch image.outputFormat {
-            case .PNG:
-                inputImage.pngData()
-            case .JPG:
-                inputImage.jpegData(compressionQuality: 1.0)
+    @objc func convertImages() {
+        for imageTask in imageTasks {
+            if let outputImage = imageTask.getOutputImage() {
+                let ptr = UnsafeMutablePointer<Int>(&imageTask.index)
+                UIImageWriteToSavedPhotosAlbum(outputImage, self, #selector(savedImage), ptr)
             }
-            
-            if let outputData, let outputImage = UIImage(data: outputData) {
-                UIImageWriteToSavedPhotosAlbum(outputImage, nil, nil, nil)
-            }
+        }
+    }
+    
+    @objc func savedImage(_ image:UIImage, error:Error?, context:UnsafeMutableRawPointer?) {
+        guard error != nil else { return }
+        
+        if let ptr = context {
+            let index = ptr.load(as: Int.self)
+            imageTasks[index].status = .DONE
         }
     }
 }

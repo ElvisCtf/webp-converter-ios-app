@@ -21,7 +21,7 @@ class ImageTaskCellView: UITableViewCell {
     }()
     
     let leadingIV: UIImageView = {
-        let image = UIImage(systemName: "doc")
+        let image = UIImage(systemName: "doc")?.withRenderingMode(.alwaysTemplate)
         let iv =  UIImageView(image: image)
         iv.contentMode = .scaleAspectFit
         return iv
@@ -107,8 +107,19 @@ class ImageTaskCellView: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setString(filename: String) {
-        fileLbl.text = filename
+    func setData(_ image: ImageTaskModel) {
+        fileLbl.text = image.filename
+        switch image.status {
+        case .READY:
+            leadingIV.image = UIImage(systemName: "doc")?.withRenderingMode(.alwaysTemplate)
+            leadingIV.tintColor = .systemBlue
+        case .DONE:
+            leadingIV.image = UIImage(systemName: "checkmark.rectangle.portrait")?.withRenderingMode(.alwaysTemplate)
+            leadingIV.tintColor = .systemGreen
+        case .ERROR:
+            leadingIV.image = UIImage(systemName: "xmark.rectangle.portrait")?.withRenderingMode(.alwaysTemplate)
+            leadingIV.tintColor = .systemRed
+        }
     }
     
     required init?(coder: NSCoder) {
