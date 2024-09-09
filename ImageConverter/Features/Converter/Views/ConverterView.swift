@@ -7,9 +7,12 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class ConverterView: UIView {
     var viewModel: ConverterViewModel
+    
+    let disposeBag = DisposeBag()
     
     lazy var tableView: UITableView = {
         let tv = UITableView.init(frame: .zero, style: .plain)
@@ -27,6 +30,7 @@ class ConverterView: UIView {
         super.init(frame: .zero)
         initUI()
         initLayout()
+        setBinding()
     }
     
     func initUI() {
@@ -39,6 +43,14 @@ class ConverterView: UIView {
             $0.top.bottom.equalTo(safeAreaLayoutGuide)
             $0.left.right.equalToSuperview()
         }
+    }
+    
+    func setBinding() {
+        viewModel.reloadTableviewRelay
+            .subscribe(onNext: { [weak self] in
+                guard let self else { return }
+                self.tableView.reloadData()
+            }).disposed(by: disposeBag)
     }
     
     func reloadTable() {
