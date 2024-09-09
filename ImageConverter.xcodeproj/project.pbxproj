@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC1BF96C2C8EF46500D42A45 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = FC1BF96B2C8EF46500D42A45 /* RxBlocking */; };
+		FC1BF96E2C8EF46500D42A45 /* RxBlocking-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = FC1BF96D2C8EF46500D42A45 /* RxBlocking-Dynamic */; };
+		FC1BF9702C8EF46500D42A45 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = FC1BF96F2C8EF46500D42A45 /* RxCocoa */; };
+		FC1BF9722C8EF46500D42A45 /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = FC1BF9712C8EF46500D42A45 /* RxCocoa-Dynamic */; };
+		FC1BF9742C8EF46500D42A45 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = FC1BF9732C8EF46500D42A45 /* RxRelay */; };
 		FC5E6A092C81609100C5A599 /* ConverterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E6A082C81609100C5A599 /* ConverterViewModel.swift */; };
 		FC5E6A0B2C816B3100C5A599 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E6A0A2C816B3100C5A599 /* UIViewController+Ext.swift */; };
 		FC5EDA812C855A7C00427B87 /* ConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EDA802C855A7C00427B87 /* ConverterView.swift */; };
@@ -69,7 +74,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCFBD8B32C7DD96B004DCA9F /* SnapKit in Frameworks */,
+				FC1BF96C2C8EF46500D42A45 /* RxBlocking in Frameworks */,
+				FC1BF9742C8EF46500D42A45 /* RxRelay in Frameworks */,
+				FC1BF9702C8EF46500D42A45 /* RxCocoa in Frameworks */,
 				FCFBD8B52C7DD96B004DCA9F /* SnapKit-Dynamic in Frameworks */,
+				FC1BF9722C8EF46500D42A45 /* RxCocoa-Dynamic in Frameworks */,
+				FC1BF96E2C8EF46500D42A45 /* RxBlocking-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +239,11 @@
 			packageProductDependencies = (
 				FCFBD8B22C7DD96B004DCA9F /* SnapKit */,
 				FCFBD8B42C7DD96B004DCA9F /* SnapKit-Dynamic */,
+				FC1BF96B2C8EF46500D42A45 /* RxBlocking */,
+				FC1BF96D2C8EF46500D42A45 /* RxBlocking-Dynamic */,
+				FC1BF96F2C8EF46500D42A45 /* RxCocoa */,
+				FC1BF9712C8EF46500D42A45 /* RxCocoa-Dynamic */,
+				FC1BF9732C8EF46500D42A45 /* RxRelay */,
 			);
 			productName = ImageConverter;
 			productReference = FCFBD8772C7DD597004DCA9F /* ImageConverter.app */;
@@ -304,6 +319,7 @@
 			mainGroup = FCFBD86E2C7DD597004DCA9F;
 			packageReferences = (
 				FCFBD8B12C7DD96B004DCA9F /* XCRemoteSwiftPackageReference "SnapKit" */,
+				FC1BF96A2C8EF46500D42A45 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = FCFBD8782C7DD597004DCA9F /* Products */;
 			projectDirPath = "";
@@ -694,6 +710,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FC1BF96A2C8EF46500D42A45 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
 		FCFBD8B12C7DD96B004DCA9F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -705,6 +729,31 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FC1BF96B2C8EF46500D42A45 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC1BF96A2C8EF46500D42A45 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		FC1BF96D2C8EF46500D42A45 /* RxBlocking-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC1BF96A2C8EF46500D42A45 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxBlocking-Dynamic";
+		};
+		FC1BF96F2C8EF46500D42A45 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC1BF96A2C8EF46500D42A45 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		FC1BF9712C8EF46500D42A45 /* RxCocoa-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC1BF96A2C8EF46500D42A45 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxCocoa-Dynamic";
+		};
+		FC1BF9732C8EF46500D42A45 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC1BF96A2C8EF46500D42A45 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
 		FCFBD8B22C7DD96B004DCA9F /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FCFBD8B12C7DD96B004DCA9F /* XCRemoteSwiftPackageReference "SnapKit" */;
