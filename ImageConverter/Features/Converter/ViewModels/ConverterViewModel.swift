@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ConverterViewModel: NSObject {
     var imageTasks = [ImageTaskModel]()
+    
+    var reloadTableviewRelay = PublishRelay<Void>()
     
     @objc func convertImages() {
         for imageTask in imageTasks {
@@ -20,11 +24,12 @@ class ConverterViewModel: NSObject {
     }
     
     @objc func savedImage(_ image:UIImage, error:Error?, context:UnsafeMutableRawPointer?) {
-        guard error != nil else { return }
+        guard error == nil else { return }
         
         if let ptr = context {
             let index = ptr.load(as: Int.self)
             imageTasks[index].status = .DONE
+            reloadTableviewRelay.accept(())
         }
     }
 }
