@@ -32,4 +32,9 @@ class ConverterViewModel: NSObject {
             reloadTableviewRelay.accept(())
         }
     }
+    
+    func updateTaskStatus(index: Int, status: Status) {
+        imageTasks[index].status = status
+        reloadTableviewRelay.accept(())
+    }
 }
