@@ -10,8 +10,9 @@ import SnapKit
 
 class ImageTaskCellView: UITableViewCell {
     static let resusableIdentifier = "ImageTaskCellView"
-    var row = 0
-    var changeFormatCallBack: ((Int, ImageFormat) -> ())?
+    var viewModel: ConverterViewModel? = nil
+    var index = 0
+    var onFormatChange: ((Int, ImageFormat) -> ())?
     
     let containerView: UIView = {
         let view = UIView()
@@ -47,8 +48,9 @@ class ImageTaskCellView: UITableViewCell {
         btn.changesSelectionAsPrimaryAction = true
         btn.showsMenuAsPrimaryAction = true
         let actionClosure = { (action: UIAction) in
-            if let changeFormat = self.changeFormatCallBack {
-                changeFormat(self.row, ImageFormat(rawValue: action.title) ?? .PNG)
+            if let changeFormat = self.onFormatChange {
+                changeFormat(self.index, ImageFormat(rawValue: action.title) ?? .PNG)
+                self.viewModel?.updateTaskStatus(index: self.index, status: .READY)
             }
         }
         btn.menu = UIMenu(
@@ -107,9 +109,13 @@ class ImageTaskCellView: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setData(_ image: ImageTaskModel) {
-        fileLbl.text = image.filename
-        switch image.status {
+    func setData(viewModel: ConverterViewModel, index: Int) {
+        self.viewModel = viewModel
+        self.index = index
+        let task = viewModel.imageTasks[index]
+        fileLbl.text = task.filename
+        
+        switch task.status {
         case .READY:
             leadingIV.image = UIImage(systemName: "doc")?.withRenderingMode(.alwaysTemplate)
             leadingIV.tintColor = .systemBlue
