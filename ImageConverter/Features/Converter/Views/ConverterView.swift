@@ -10,11 +10,10 @@ import SnapKit
 import RxSwift
 
 class ConverterView: UIView {
-    var viewModel: ConverterViewModel
+    private var viewModel: ConverterViewModel
+    private let disposeBag = DisposeBag()
     
-    let disposeBag = DisposeBag()
-    
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tv = UITableView.init(frame: .zero, style: .plain)
         tv.delegate = self
         tv.dataSource = self
@@ -33,11 +32,11 @@ class ConverterView: UIView {
         setBinding()
     }
     
-    func initUI() {
+    private func initUI() {
         backgroundColor = .systemBackground
     }
     
-    func initLayout() {
+    private func initLayout() {
         addSubview(tableView)
         tableView.snp.makeConstraints {
             $0.top.bottom.equalTo(safeAreaLayoutGuide)
@@ -45,7 +44,7 @@ class ConverterView: UIView {
         }
     }
     
-    func setBinding() {
+    private func setBinding() {
         viewModel.reloadTableviewRelay
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }

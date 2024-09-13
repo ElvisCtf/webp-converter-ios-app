@@ -10,39 +10,39 @@ import SnapKit
 
 class ImageTaskCellView: UITableViewCell {
     static let resusableIdentifier = "ImageTaskCellView"
-    var viewModel: ConverterViewModel? = nil
-    var index = 0
+    private var viewModel: ConverterViewModel? = nil
+    private var index = 0
     var onFormatChange: ((Int, ImageFormat) -> ())?
     
-    let containerView: UIView = {
+    private let containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .secondarySystemGroupedBackground
         view.layer.cornerRadius = 8
         return view
     }()
     
-    let leadingIV: UIImageView = {
+    private let leadingIV: UIImageView = {
         let image = UIImage(systemName: "doc")?.withRenderingMode(.alwaysTemplate)
         let iv =  UIImageView(image: image)
         iv.contentMode = .scaleAspectFit
         return iv
     }()
     
-    let fileLbl: UILabel = {
+    private let fileLbl: UILabel = {
         let lbl = UILabel()
         lbl.numberOfLines = 1
         lbl.text = ""
         return lbl
     }()
     
-    let toLbl: UILabel = {
+    private let toLbl: UILabel = {
         let lbl = UILabel()
         lbl.numberOfLines = 1
         lbl.text = "To"
         return lbl
     }()
     
-    lazy var formatBtn: UIButton = {
+    private lazy var formatBtn: UIButton = {
         let btn = UIButton(primaryAction: nil)
         btn.configuration = .tinted()
         btn.changesSelectionAsPrimaryAction = true
@@ -68,10 +68,11 @@ class ImageTaskCellView: UITableViewCell {
         initUI()
     }
     
-    func initUI() {
+    private func initUI() {
         selectionStyle = .none
         backgroundColor = .clear
         contentView.backgroundColor = .clear
+        
         contentView.addSubview(containerView)
         containerView.addSubview(leadingIV)
         containerView.addSubview(fileLbl)

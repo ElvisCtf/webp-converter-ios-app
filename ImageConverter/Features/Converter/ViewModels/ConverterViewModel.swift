@@ -10,11 +10,15 @@ import RxSwift
 import RxCocoa
 
 class ConverterViewModel: NSObject {
+    var reloadTableviewRelay = PublishRelay<Void>()
     var imageTasks = [ImageTaskModel]()
     
-    var reloadTableviewRelay = PublishRelay<Void>()
+    func updateTaskStatus(index: Int, status: Status) {
+        imageTasks[index].status = status
+        reloadTableviewRelay.accept(())
+    }
     
-    @objc func convertImages() {
+    func convertImages() {
         for imageTask in imageTasks {
             if let outputImage = imageTask.getOutputImage() {
                 let ptr = UnsafeMutablePointer<Int>(&imageTask.index)
@@ -23,7 +27,7 @@ class ConverterViewModel: NSObject {
         }
     }
     
-    @objc func savedImage(_ image:UIImage, error:Error?, context:UnsafeMutableRawPointer?) {
+    @objc private func savedImage(_ image:UIImage, error:Error?, context:UnsafeMutableRawPointer?) {
         guard error == nil else { return }
         
         if let ptr = context {
@@ -31,10 +35,5 @@ class ConverterViewModel: NSObject {
             imageTasks[index].status = .DONE
             reloadTableviewRelay.accept(())
         }
-    }
-    
-    func updateTaskStatus(index: Int, status: Status) {
-        imageTasks[index].status = status
-        reloadTableviewRelay.accept(())
     }
 }
