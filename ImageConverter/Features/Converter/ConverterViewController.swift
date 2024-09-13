@@ -10,23 +10,21 @@ import SnapKit
 import PhotosUI
 
 class ConverterViewController: UIViewController {
-    
-    let viewModel = ConverterViewModel()
-    
-    lazy var converterView = ConverterView(viewModel: viewModel)
+    private lazy var converterView = ConverterView(viewModel: viewModel)
+    private let viewModel = ConverterViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
     }
     
-    func initUI() {
+    private func initUI() {
         view = converterView
         initNavBar(with: "Image Converter")
         initToolBar()
     }
     
-    func initToolBar() {
+    private func initToolBar() {
         toolbarItems = [
             UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addImage)),
             UIBarButtonItem(systemItem: .flexibleSpace),
@@ -45,7 +43,7 @@ class ConverterViewController: UIViewController {
         present(imagePicker, animated: true)
     }
     
-    @objc func convertImage() {
+    @objc private func convertImage() {
         viewModel.convertImages()
     }
 }
