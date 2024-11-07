@@ -62,7 +62,7 @@ class ConverterView: UIView {
 }
 
 
-// MARK: TableView Delegate
+// MARK: - TableView Delegate
 extension ConverterView: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
