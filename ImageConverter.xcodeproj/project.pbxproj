@@ -13,6 +13,7 @@
 		FC5E6A092C81609100C5A599 /* ConverterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E6A082C81609100C5A599 /* ConverterViewModel.swift */; };
 		FC5E6A0B2C816B3100C5A599 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E6A0A2C816B3100C5A599 /* UIViewController+Ext.swift */; };
 		FC5EDA812C855A7C00427B87 /* ConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EDA802C855A7C00427B87 /* ConverterView.swift */; };
+		FC60BEF22D71B65D00015590 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC60BEF12D71B65900015590 /* Constants.swift */; };
 		FCAFD6982C805C540040B618 /* ImageTaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAFD6972C805C540040B618 /* ImageTaskCellView.swift */; };
 		FCAFD69B2C807C3E0040B618 /* ImageTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAFD69A2C807C3E0040B618 /* ImageTaskModel.swift */; };
 		FCFBD87B2C7DD597004DCA9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFBD87A2C7DD597004DCA9F /* AppDelegate.swift */; };
@@ -48,6 +49,7 @@
 		FC5E6A082C81609100C5A599 /* ConverterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewModel.swift; sourceTree = "<group>"; };
 		FC5E6A0A2C816B3100C5A599 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		FC5EDA802C855A7C00427B87 /* ConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterView.swift; sourceTree = "<group>"; };
+		FC60BEF12D71B65900015590 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FCAFD6972C805C540040B618 /* ImageTaskCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTaskCellView.swift; sourceTree = "<group>"; };
 		FCAFD69A2C807C3E0040B618 /* ImageTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTaskModel.swift; sourceTree = "<group>"; };
 		FCFBD8772C7DD597004DCA9F /* ImageConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +104,15 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		FC60BEEE2D71B63900015590 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				FC60BEF12D71B65900015590 /* Constants.swift */,
+				FCFBD8AE2C7DD8BA004DCA9F /* Extensions */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
 		FCAFD6962C805BF40040B618 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,8 +155,8 @@
 			children = (
 				FCFBD8AC2C7DD89F004DCA9F /* Core */,
 				FCFBD8AD2C7DD8A9004DCA9F /* Features */,
+				FC60BEEE2D71B63900015590 /* Supporting */,
 				FCFBD8AF2C7DD8CC004DCA9F /* Resources */,
-				FCFBD8AE2C7DD8BA004DCA9F /* Extensions */,
 				FCFBD8882C7DD599004DCA9F /* Info.plist */,
 			);
 			path = ImageConverter;
@@ -359,6 +370,7 @@
 				FCFBD87F2C7DD597004DCA9F /* ConverterViewController.swift in Sources */,
 				FCFBD87B2C7DD597004DCA9F /* AppDelegate.swift in Sources */,
 				FCAFD6982C805C540040B618 /* ImageTaskCellView.swift in Sources */,
+				FC60BEF22D71B65D00015590 /* Constants.swift in Sources */,
 				FC5E6A092C81609100C5A599 /* ConverterViewModel.swift in Sources */,
 				FCFBD8AB2C7DD7F9004DCA9F /* UINavigationController+Ext.swift in Sources */,
 				FC5E6A0B2C816B3100C5A599 /* UIViewController+Ext.swift in Sources */,
@@ -539,6 +551,8 @@
 				DEVELOPMENT_TEAM = 89457VG9NL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImageConverter/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "WebP Converter";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow this app access your album to save photos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -566,6 +580,8 @@
 				DEVELOPMENT_TEAM = 89457VG9NL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImageConverter/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "WebP Converter";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow this app access your album to save photos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

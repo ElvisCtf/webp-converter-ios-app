@@ -20,7 +20,7 @@ class ConverterViewController: UIViewController {
     
     private func initUI() {
         view = converterView
-        initNavBar(with: "Image Converter")
+        initNavBar(with: Constants.appName)
         initToolBar()
     }
     
@@ -61,11 +61,9 @@ extension ConverterViewController: PHPickerViewControllerDelegate {
                 // Convert WebP image into data object
                 itemProvider.loadDataRepresentation(forTypeIdentifier: UTType.webP.identifier) { data, error in
                     guard error == nil else { return }
-                    DispatchQueue.main.async {
-                        self.viewModel.imageTasks.append(ImageTaskModel(index: index, filename: itemProvider.suggestedName ?? "", inputData: data, outputFormat: .PNG))
-                        self.converterView.reloadTable()
-                        index+=1
-                    }
+                    self.viewModel.imageTasks.append(ImageTaskModel(index: index, filename: itemProvider.suggestedName ?? "", inputData: data, outputFormat: .PNG))
+                    index+=1
+                    self.converterView.reloadTable()
                 }
             }
         }
