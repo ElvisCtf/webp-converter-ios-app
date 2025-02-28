@@ -48,12 +48,14 @@ class ConverterView: UIView {
         viewModel.reloadTableviewRelay
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
-                self.tableView.reloadData()
+                self.reloadTable()
             }).disposed(by: disposeBag)
     }
     
     func reloadTable() {
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     required init?(coder: NSCoder) {
