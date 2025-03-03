@@ -22,7 +22,7 @@ class ImageTaskCellView: UITableViewCell {
     }()
     
     private let leadingIV: UIImageView = {
-        let image = UIImage(systemName: "doc")?.withRenderingMode(.alwaysTemplate)
+        let image = UIImage(systemName: "doc")
         let iv =  UIImageView(image: image)
         iv.contentMode = .scaleAspectFit
         return iv
@@ -118,13 +118,13 @@ class ImageTaskCellView: UITableViewCell {
         
         switch task.status {
         case .READY:
-            leadingIV.image = UIImage(systemName: "doc")?.withRenderingMode(.alwaysTemplate)
+            leadingIV.image = UIImage(systemName: "doc")
             leadingIV.tintColor = .systemBlue
         case .DONE:
-            leadingIV.image = UIImage(systemName: "checkmark.rectangle.portrait")?.withRenderingMode(.alwaysTemplate)
+            leadingIV.image = UIImage(systemName: "checkmark.rectangle.portrait")
             leadingIV.tintColor = .systemGreen
         case .ERROR:
-            leadingIV.image = UIImage(systemName: "xmark.rectangle.portrait")?.withRenderingMode(.alwaysTemplate)
+            leadingIV.image = UIImage(systemName: "xmark.rectangle.portrait")
             leadingIV.tintColor = .systemRed
         }
     }
