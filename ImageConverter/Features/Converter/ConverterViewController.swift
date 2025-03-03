@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import PhotosUI
 
-class ConverterViewController: UIViewController {
+final class ConverterViewController: UIViewController {
     private lazy var converterView = ConverterView(parentVC: self, viewModel: viewModel)
     private let viewModel = ConverterViewModel()
     

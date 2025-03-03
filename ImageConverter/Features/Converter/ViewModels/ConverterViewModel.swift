@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import Photos
 
-class ConverterViewModel: NSObject {
+final class ConverterViewModel: NSObject {
     var reloadTableviewRelay = PublishRelay<Void>()
     var imageTasks = [ImageTaskModel]()
     

@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import PhotosUI
 
-class ConverterView: UIView {
+final class ConverterView: UIView {
     weak var parentVC: UIViewController?
     
     private var viewModel: ConverterViewModel
