@@ -20,17 +20,17 @@ class ConverterViewModel: NSObject {
     }
     
     func convertImages() {
-        for imageTask in imageTasks {
+        for (i, imageTask) in imageTasks.enumerated() {
             if let outputImage = imageTask.getOutputImage() {
-                saveImageToAlbum(image: outputImage, albumName: Constants.albumName)
+                saveImageToAlbum(index: i, image: outputImage, albumName: Constants.albumName)
             }
         }
     }
     
-    func saveImageToAlbum(image: UIImage, albumName: String) {
+    func saveImageToAlbum(index: Int, image: UIImage, albumName: String) {
         createAlbum(with: albumName) { album in
             if let album {
-                self.saveImage(to: album, with: image)
+                self.saveImage(to: album, with: image, index: index)
             }
         }
     }
@@ -56,7 +56,7 @@ class ConverterViewModel: NSObject {
         }
     }
     
-    private func saveImage(to album: PHAssetCollection, with image: UIImage) {
+    private func saveImage(to album: PHAssetCollection, with image: UIImage, index: Int) {
         PHPhotoLibrary.shared().performChanges({
             let assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
             let albumChangeRequest = PHAssetCollectionChangeRequest(for: album)
@@ -64,9 +64,9 @@ class ConverterViewModel: NSObject {
             albumChangeRequest?.addAssets([assetPlaceholder as Any] as NSArray)
         }, completionHandler: { success, error in
             if success {
-                print("Image saved to album successfully!")
-            } else if let error = error {
-                print("Error saving image to album: \(error.localizedDescription)")
+                self.imageTasks[index].status = .DONE
+            } else if error != nil {
+                self.imageTasks[index].status = .ERROR
             }
             self.reloadTableviewRelay.accept(())
         })
