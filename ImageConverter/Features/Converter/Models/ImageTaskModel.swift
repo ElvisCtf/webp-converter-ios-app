@@ -18,7 +18,7 @@ enum Status: String {
     case ERROR
 }
 
-class ImageTaskModel {
+final class ImageTaskModel {
     var index: Int
     var status: Status
     var filename: String

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ImageTaskCellView: UITableViewCell {
+final class ImageTaskCellView: UITableViewCell {
     static let resusableIdentifier = "ImageTaskCellView"
     private var viewModel: ConverterViewModel? = nil
     private var index = 0
