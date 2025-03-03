@@ -8,10 +8,26 @@
 import UIKit
 import SnapKit
 import RxSwift
+import PhotosUI
 
 class ConverterView: UIView {
+    weak var parentVC: UIViewController?
+    
     private var viewModel: ConverterViewModel
     private let disposeBag = DisposeBag()
+    
+    lazy var addBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addImage))
+    lazy var editBtn = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTasks))
+    lazy var startBtn = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(convertImage))
+    var toolbarItems: [UIBarButtonItem] {
+        [
+            addBtn,
+            UIBarButtonItem(systemItem: .flexibleSpace),
+            editBtn,
+            UIBarButtonItem(systemItem: .flexibleSpace),
+            startBtn
+        ]
+    }
     
     private lazy var tableView: UITableView = {
         let tv = UITableView.init(frame: .zero, style: .plain)
@@ -24,8 +40,9 @@ class ConverterView: UIView {
         return tv
     }()
     
-    init(viewModel: ConverterViewModel) {
+    init(parentVC: UIViewController, viewModel: ConverterViewModel) {
         self.viewModel = viewModel
+        self.parentVC = parentVC
         super.init(frame: .zero)
         initUI()
         initLayout()
@@ -56,6 +73,26 @@ class ConverterView: UIView {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    @objc func addImage() {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 0
+        config.selection = .ordered
+        config.filter = .images
+        let imagePicker = PHPickerViewController(configuration: config)
+        imagePicker.delegate = self
+        parentVC?.present(imagePicker, animated: true)
+    }
+    
+    @objc func editTasks() {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        editBtn = UIBarButtonItem(barButtonSystemItem: tableView.isEditing ? .done : .edit, target: self, action: #selector(editTasks))
+        parentVC?.toolbarItems = toolbarItems
+    }
+    
+    @objc private func convertImage() {
+        viewModel.convertImages()
     }
     
     required init?(coder: NSCoder) {
@@ -93,6 +130,28 @@ extension ConverterView: UITableViewDelegate, UITableViewDataSource {
             viewModel.imageTasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.endUpdates()
+        }
+    }
+}
+
+
+// MARK: - PHPickerViewControllerDelegate
+extension ConverterView: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        var index = 0
+        for result in results {
+            let itemProvider = result.itemProvider
+            // Check image is WebP
+            if itemProvider.hasItemConformingToTypeIdentifier(UTType.webP.identifier) {
+                // Convert WebP image into data object
+                itemProvider.loadDataRepresentation(forTypeIdentifier: UTType.webP.identifier) { data, error in
+                    guard error == nil else { return }
+                    self.viewModel.imageTasks.append(ImageTaskModel(index: index, filename: itemProvider.suggestedName ?? "", inputData: data, outputFormat: .PNG))
+                    index+=1
+                    self.reloadTable()
+                }
+            }
         }
     }
 }
