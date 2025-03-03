@@ -32,6 +32,7 @@ class ImageTaskCellView: UITableViewCell {
         let lbl = UILabel()
         lbl.numberOfLines = 1
         lbl.text = ""
+        lbl.setContentHuggingPriority(.defaultLow, for: .horizontal)
         return lbl
     }()
     
@@ -39,6 +40,8 @@ class ImageTaskCellView: UITableViewCell {
         let lbl = UILabel()
         lbl.numberOfLines = 1
         lbl.text = "To"
+        lbl.textAlignment = .center
+        lbl.setContentHuggingPriority(.defaultLow + 1, for: .horizontal)
         return lbl
     }()
     
@@ -60,6 +63,7 @@ class ImageTaskCellView: UITableViewCell {
                 UIAction(title: ImageFormat.JPG.rawValue, handler: actionClosure)
             ]
         )
+        btn.setContentHuggingPriority(.defaultLow + 2, for: .horizontal)
         return btn
     }()
     
@@ -90,17 +94,18 @@ class ImageTaskCellView: UITableViewCell {
         }
         
         fileLbl.snp.makeConstraints {
-            $0.left.equalTo(leadingIV.snp.right).offset(24)
+            $0.left.equalTo(leadingIV.snp.right).offset(16)
             $0.centerY.equalTo(leadingIV.snp.centerY)
         }
         
         toLbl.snp.makeConstraints {
             $0.left.equalTo(fileLbl.snp.right).offset(16)
             $0.centerY.equalTo(leadingIV.snp.centerY)
+            $0.size.equalTo(24)
         }
         
         formatBtn.snp.makeConstraints {
-            $0.left.equalTo(toLbl.snp.right).offset(24)
+            $0.left.equalTo(toLbl.snp.right).offset(16)
             $0.right.equalToSuperview().inset(16)
             $0.centerY.equalTo(leadingIV.snp.centerY)
         }
