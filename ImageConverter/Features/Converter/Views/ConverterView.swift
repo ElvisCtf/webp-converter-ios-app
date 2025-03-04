@@ -113,10 +113,7 @@ extension ConverterView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImageTaskCellView.resusableIdentifier, for: indexPath) as! ImageTaskCellView
-        cell.setData(viewModel: viewModel, index: indexPath.row)
-        cell.onFormatChange = { row, imageFormat in
-            self.viewModel.imageTasks[indexPath.row].outputFormat = imageFormat
-        }
+        cell.setData(task: viewModel.imageTasks[indexPath.row], index: indexPath.row)
         return cell
     }
     
