@@ -10,7 +10,7 @@ import SnapKit
 
 final class ImageTaskCellView: UITableViewCell {
     static let resusableIdentifier = "ImageTaskCellView"
-    private var viewModel: ConverterViewModel? = nil
+    private var task: ImageTaskModel?
     private var index = 0
     var onFormatChange: ((Int, ImageFormat) -> ())?
     
@@ -51,9 +51,9 @@ final class ImageTaskCellView: UITableViewCell {
         btn.changesSelectionAsPrimaryAction = true
         btn.showsMenuAsPrimaryAction = true
         let actionClosure = { (action: UIAction) in
-            if let changeFormat = self.onFormatChange {
-                changeFormat(self.index, ImageFormat(rawValue: action.title) ?? .PNG)
-                self.viewModel?.updateTaskStatus(index: self.index, status: .READY)
+            if let task = self.task {
+                task.outputFormat = ImageFormat(rawValue: action.title) ?? .PNG
+                task.status = .READY
             }
         }
         btn.menu = UIMenu(
@@ -115,10 +115,9 @@ final class ImageTaskCellView: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setData(viewModel: ConverterViewModel, index: Int) {
-        self.viewModel = viewModel
+    func setData(task: ImageTaskModel, index: Int) {
+        self.task = task
         self.index = index
-        let task = viewModel.imageTasks[index]
         fileLbl.text = task.filename
         
         switch task.status {
